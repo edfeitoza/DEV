@@ -1,20 +1,18 @@
 ***
 ***
 INSTALAÇÃO DO DOCKER EM UM ROCKLINUX:
-# (opcional) remover pacotes que podem conflitar
+(opcional) remover pacotes que podem conflitar
+```bash
 sudo dnf remove docker docker-client docker-common docker-engine podman runc
-
+```
+```bash
 sudo dnf check-update
 sudo dnf install -y dnf-plugins-core
 sudo dnf config-manager --add-repo https://download.docker.com/linux/rhel/docker-ce.repo
 sudo dnf install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
 sudo systemctl --now enable docker
 sudo systemctl status docker
-****
-****
-
-
-
+```
 ***
 MANIPULANDO IMAGENS
 ***
