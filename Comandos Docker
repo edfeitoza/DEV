@@ -1,0 +1,60 @@
+***
+***
+INSTALAÇÃO DO DOCKER EM UM ROCKLINUX:
+# (opcional) remover pacotes que podem conflitar
+sudo dnf remove docker docker-client docker-common docker-engine podman runc
+
+sudo dnf check-update
+sudo dnf install -y dnf-plugins-core
+sudo dnf config-manager --add-repo https://download.docker.com/linux/rhel/docker-ce.repo
+sudo dnf install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+sudo systemctl --now enable docker
+sudo systemctl status docker
+****
+****
+STATUS DOS CONTAINERS
+docker ps
+
+PUXANDO UMA IMAGEM DO DOCKER-HUB, SERÁ PRECISO SABER O NOME A IMAGEM:
+docker pull <nome da imagem>
+docker pull hello-world
+
+LISTA AS IMAGENS BAIXAS:
+docker images
+
+REMOVENDO AS IMAGENS, A PARTIR DO NOME OU ID:
+docker rmi hello-world:latest
+
+INICIANDO UMA IMAGEM, CASO ELA NÃO EXISTE NO LOCAL E SE NENHUMA TAG ESPECIFICADA O DOCKER BAIXARÁ A ULTIMA VERSÃO DA IMAGEM SOLICITADA:
+docker run hello-world
+
+INICIA A IMAGEM INTERATIVA, O SHELL ATUAL SE TRANSFORMA NO SHELL DO CONTAINER
+docker run -it rockylinux
+docker run -it ubuntu bash
+
+O PROMPT ABAIXO DETERMINA QUE ESTAMOS EM UM CONTAINER:
+root@cb563106fcc1:/#
+
+MANTER UMA CONTAINER RODANDO:
+--name <apelido do container> <nome da imagem>
+docker run -dt --name ubuntu-server ubuntu
+
+SUBINDO UM SERVIÇO DE WEB-SERVER COMO MODELO DE USO:
+-p <porta do container:porta do SO>
+
+docker run -d --name web-server -p 80:80 nginx
+
+PARANDO UM DOCKER:
+docker stop <nome do docker/id>
+
+INICIANDO UM DOCKER
+docker start <nome do docker/id>
+
+REMOVENDO UM DOCKER:
+docker rm <nome do docker/id>
+
+SABER O CONSUMO DOS DOCKERs:
+docker stats
+
+REALIZAR FAXINA NO AMBIENTE, USAR COM CUIDADO, APAGA CONTAINERs PARADOS E INTERFACE DE REDE:
+docker system prune <all>
