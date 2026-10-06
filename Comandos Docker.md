@@ -61,19 +61,39 @@ INICIANDO UM CONTAINER JÁ CRIADO ANTERIORMENTE:
 ```bash
 docker start <id>
 ```
+PARANDO UM CONTAINER
+```bash
+docker stop <id>
+```
+RESTARTANDO UM CONTAINER
+```bash
+docker restart <id>
+```
+RENOMEANDO O CONTAINER
+```bash
+docker rename <id container/nome> <novo nome>
+```
+INSPECIONANDO UM DOCKER, CHECANDO A VARIAVEL DE AMBIENTE
+```bash
+docker inspect <id container/nome>
+```
 CRIANDO UM APELIDO AO CONTAINER:
 ```bash
 docker run --name <apelido do container> <nome da imagem>
+```
+CHECANDO RECURSOS CONSUMIDOS PELOS CONTAINER ATIVOS:
+```bash
+docker stats
+```
+RECONFIGURANDO A MEMORIA DE UM CONTAINER QUE ESTEJA RODANDO, É PRECISO ACERTAR O SWAP
+```bash
+docker update --memory <qtd memoria>g --memory-swap <qtd memoria>g <id container/nome>
 ```
 INICIANDO UM CONTAINER EM MODO DEAMON:
 ```bash
 docker run -d <id container>
 docker run -dt --name ubuntu-server ubuntu
 docker run -d --name web-server -p 80:80 nginx
-```
-PARANDO UM CONTAINER:
-```bash
-docker stop <nome do docker/id>
 ```
 INICIA A IMAGEM INTERATIVA, O SHELL ATUAL SE TRANSFORMA NO SHELL DO CONTAINER
 ```bash
@@ -83,13 +103,9 @@ docker run -it ubuntu bash
 O PROMPT ABAIXO DETERMINA QUE ESTAMOS EM UM CONTAINER:
 root@cb563106fcc1:/#
 
-REMOVENDO UM CONTAINER:
+REMOVENDO UM CONTAINER DESDE QUE ESTEJA PARADO:
 ```bash
 docker rm <nome do docker/id>
-```
-SABER O CONSUMO DOS CONTAINERs:
-```bash
-docker stats
 ```
 REALIZAR FAXINA NO AMBIENTE, USAR COM CUIDADO, APAGA CONTAINERs PARADOS E INTERFACE DE REDE:
 ```bash
