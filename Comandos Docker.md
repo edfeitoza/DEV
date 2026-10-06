@@ -75,7 +75,7 @@ docker rename <id container/nome> <novo nome>
 ```
 INSPECIONANDO UM DOCKER, CHECANDO A VARIAVEL DE AMBIENTE
 ```bash
-docker inspect <id container/nome>
+docker inspect <id container/nome> 
 ```
 CRIANDO UM APELIDO AO CONTAINER:
 ```bash
@@ -88,6 +88,19 @@ docker stats
 RECONFIGURANDO A MEMORIA DE UM CONTAINER QUE ESTEJA RODANDO, É PRECISO ACERTAR O SWAP
 ```bash
 docker update --memory <qtd memoria>g --memory-swap <qtd memoria>g <id container/nome>
+```
+ANALISANDO LOGs DO CONTAINER:
+```bash
+docker logs <id container/nome>
+docker logs -f <id container/nome>
+docker logs --tail 10 <id container/nome>
+docker logs --since 1m <id container/nome>
+docker logs -f --since 1m <id container/nome>
+docker logs -f --tail 10 <id container/nome>
+```
+INICIANDO UM CONTAINER TEMPORARIO, É APAGADO AO DAR stop:
+```bash
+docker run --rm -d <id container/nome>
 ```
 INICIANDO UM CONTAINER EM MODO DEAMON:
 ```bash
