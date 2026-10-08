@@ -110,8 +110,14 @@ docker run -d --name web-server -p 80:80 nginx
 ```
 INICIA A IMAGEM INTERATIVA, O SHELL ATUAL SE TRANSFORMA NO SHELL DO CONTAINER
 ```bash
-docker run -it rockylinux
-docker run -it ubuntu bash
+docker run -it <id container/nome> sh
+docker run -it <id container/nome> bash
+
+docker run <flags> <imagem> <comando>
+            -p      id imagem sh/bash
+            -d                 ls /
+            -it                env
+            -rm                whoami
 ```
 O PROMPT ABAIXO DETERMINA QUE ESTAMOS EM UM CONTAINER:
 root@cb563106fcc1:/#
