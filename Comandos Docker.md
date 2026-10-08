@@ -130,3 +130,29 @@ REALIZAR FAXINA NO AMBIENTE, USAR COM CUIDADO, APAGA CONTAINERs PARADOS E INTERF
 ```bash
 docker system prune <all>
 ```
+***
+MANIPULANDO VOLUMES
+***
+CRIANDO UM VOLUME
+```bash
+docker volume create <nome do volume>
+```
+LISTANDO VOLUMES CRIADOS
+```bash
+docker volume ls
+```
+***
+EXEMPLO DE USO DOS VOLUMES
+docker run --name nginx-web -p 3001:80 -d -v harddisk:/usr/share/nginx/html/ f9ea18bfa4fa
+-v flag relacionada ao volume 
+harddisk: nome do volume
+/usr/share/nginx/html/ caminho indicado pela documentacao da imagem
+***
+INSPECIONANDO VOLUMES
+```bash
+docker volume inspect <nome do volume> 
+```
+REMOVENDO UM VOLUME CRIADO, só apaga se o container estiver parado.
+```bash
+docker volume rm <nome volume>
+```
