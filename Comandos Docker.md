@@ -156,3 +156,9 @@ REMOVENDO UM VOLUME CRIADO, só apaga se o container estiver parado.
 ```bash
 docker volume rm <nome volume>
 ```
+***
+BIND MOUNT
+***
+```bash
+docker run -d -v <caminho do sistema operacional>:<caminho da documentação do docker> <id da imagem>
+```
