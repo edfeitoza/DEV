@@ -241,7 +241,7 @@ docker run --name wordpress --network lan-wordpress -p 4000:80 -e WORDPRESS_DB_H
 >-e MYSQL_DATABASE=wordb\
 >-e MYSQL_USER=wuser\
 >-e MYSQL_PASSWORD=1234\
->-e MYSQL_ROOT_PASSWORD=102030\
+>-e MYSQL_ROOT_PASSWORD=102030\ 
 
 ```bash
 docker run --name mysql --network lan-wordpress -e MYSQL_DATABASE=wordb -e MYSQL_USER=wuser -e MYSQL_PASSWORD=1234 -e MYSQL_ROOT_PASSWORD=102030 -v /container/mysql-wd:/var/lib/mysql 9d48c42f8341
