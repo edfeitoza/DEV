@@ -131,7 +131,7 @@ REALIZAR FAXINA NO AMBIENTE, USAR COM CUIDADO, APAGA CONTAINERs PARADOS E INTERF
 docker system prune <all>
 ```
 ***
-MANIPULANDO VOLUMES
+MANIPULANDO VOLUMES  E BIND MOUNTs
 ***
 CRIANDO UM VOLUME
 ```bash
@@ -161,4 +161,88 @@ BIND MOUNT
 ***
 ```bash
 docker run -d -v <caminho do sistema operacional>:<caminho da documentação do docker> <id da imagem>
+```
+***
+MANIPULANDO REDES
+***
+CRIANDO UMA REDE
+```bash
+docker network create <nome da rede>
+```
+LISTANDO REDES CRIADAS
+```bash
+docker network ls
+```
+AGREGANDO CONTAINER EM SUAS RESPECTIVAS REDES
+```bash
+docker network connect <id da rede> <id container/nome>
+```
+CHECANDO CONTAINER ANINHADO A NETWORK
+```bash
+docker network inspect <id network/nome>
+```
+ADICIONANDO NETWORK A UM CONTAINER NO MOMENTO DE SUA CRIAÇÃO:
+```bash
+docker run --name <nome container> -d -p <porta de acesso XX:XX> -e POSTGRES_PASSWORD=<senha> -e POSTGRES_USER=<usuario> -e POSTGRES_DB=<nome da base de dados> -v <>bind mount>:<padrão do container> --network <id da network/nome> <imagem>
+```
+ ***
+TIPOS DE REDES
+***
+BRIDGE: compartilha conexão com a maquina fisica
+HOST: compartilha conexão entre containers
+NONE: sem acesso a rede
+***
+BRIDGE 
+```bash
+docker --network local-lan
+```
+HOST
+```bash
+docker --network host
+```
+NONE
+```bash
+docker --network none
+```
+REMOVENDO UMA NETWORK
+```bash
+docker network rm <id da network/nome>
+```
+CONECTAR CONTAINER A UMA REDE EXISTENTE
+```bash
+docker network connect <id da network/nome> <id container/nome>
+```
+DESCONECTAR CONTAINER A UMA REDE EXISTENTE
+```bash
+docker network disconnect <id da network/nome> <id container/nome>
+```
+***
+CRIANDO UM AMBIENTE DOCKER - WORDPRESS/MYSQL - EXEMPLO DE USO E APLICABILIDADE
+***
+CRIANDO A NETWORK DO AMBIENTE DOCKER WORDPRESS
+```bash
+docker network create lan-wordpress
+```
+
+--CRIANDO O DOCKER WORDPRESS
+--VARIAVEIS DE AMBIENTES NECESSARIAS:
+*-e WORDPRESS_DB_HOST=mysql
+*-e WORDPRESS_DB_USER=wuser
+*-e WORDPRESS_DB_PASSWORD=1234
+*-e WORDPRESS_DB_NAME=wordb
+*wordpress:/var/www/html
+
+```bash
+docker run --name wordpress --network lan-wordpress -p 4000:80 -e WORDPRESS_DB_HOST=mysql -e WORDPRESS_DB_USER=wuser -e WORDPRESS_DB_PASSWORD=1234 -e WORDPRESS_DB_NAME=wordb -v /container/wordpress-my:/var/www/html f32ffa85064d
+```
+
+--CRIANDO O DOCKER MYSQL
+--VARIAVEIS DE AMBIENTES NECESSARIAS:
+*-e MYSQL_DATABASE=wordb
+*-e MYSQL_USER=wuser
+*-e MYSQL_PASSWORD=1234
+*-e MYSQL_ROOT_PASSWORD=102030
+
+```bash
+docker run --name mysql --network lan-wordpress -e MYSQL_DATABASE=wordb -e MYSQL_USER=wuser -e MYSQL_PASSWORD=1234 -e MYSQL_ROOT_PASSWORD=102030 -v /container/mysql-wd:/var/lib/mysql 9d48c42f8341
 ```
