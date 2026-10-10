@@ -223,7 +223,7 @@ CRIANDO A NETWORK DO AMBIENTE DOCKER WORDPRESS
 ```bash
 docker network create lan-wordpress
 ```
-[!NOTE]
+[!ATENCAO]
 >CRIANDO O DOCKER WORDPRESS\
 >VARIAVEIS DE AMBIENTES NECESSARIAS:\
 >-e WORDPRESS_DB_HOST=mysql\
@@ -235,7 +235,7 @@ docker network create lan-wordpress
 ```bash
 docker run --name wordpress --network lan-wordpress -p 4000:80 -e WORDPRESS_DB_HOST=mysql -e WORDPRESS_DB_USER=wuser -e WORDPRESS_DB_PASSWORD=1234 -e WORDPRESS_DB_NAME=wordb -v /container/wordpress-my:/var/www/html f32ffa85064d
 ```
-[!NOTE]
+[!ATENCAO]
 >CRIANDO O DOCKER MYSQL\
 >VARIAVEIS DE AMBIENTES NECESSARIAS:\
 >-e MYSQL_DATABASE=wordb\
@@ -245,4 +245,11 @@ docker run --name wordpress --network lan-wordpress -p 4000:80 -e WORDPRESS_DB_H
 
 ```bash
 docker run --name mysql --network lan-wordpress -e MYSQL_DATABASE=wordb -e MYSQL_USER=wuser -e MYSQL_PASSWORD=1234 -e MYSQL_ROOT_PASSWORD=102030 -v /container/mysql-wd:/var/lib/mysql 9d48c42f8341
+```
+***
+CONSTRUINDO O DOCKERFILE
+***
+CRIANDO UMA IMAGEM A UTILIZANDO O DOCKERFILE
+```bash
+docker build -t <novo nome da imagem:versao> .
 ```
